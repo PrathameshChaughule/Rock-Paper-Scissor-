@@ -9,12 +9,15 @@ import java.awt.event.MouseAdapter;
 
 
 class Game extends JFrame{
-    JLabel computerChoice,result,playerChoice,computerScore,PlayerScore, backgroundImage;
+    JLabel computerChoice,result,playerChoice,computerScore,PlayerScore, backgroundImage, startImage;
     int player_score=0;
     int computer_score=0;
 
-    ImageIcon image_rock, image_paper, image_scissor, image_win, image_loss, image_draw, bg;
+    ImageIcon image_rock, image_paper, image_scissor, image_win, image_loss, image_draw, bg, start;
     public void setup(){
+        start = new ImageIcon(new ImageIcon("assets/RPS.png").getImage()
+                                    .getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+
         bg = new ImageIcon(new ImageIcon("assets/bg1.png").getImage()
                                     .getScaledInstance(600, 400, Image.SCALE_DEFAULT));
 
@@ -40,6 +43,12 @@ class Game extends JFrame{
         backgroundImage = new JLabel();
         backgroundImage.setIcon(bg);
         backgroundImage.setBounds(0,0,600,400);
+
+        startImage = new JLabel();
+        startImage.setIcon(start);
+        startImage.setHorizontalTextPosition(JLabel.CENTER);
+        startImage.setVerticalTextPosition(JLabel.BOTTOM);
+        startImage.setBounds(230,80,150,150);
 
         computerScore = new JLabel();
         computerScore.setText("Computer : 0");
@@ -118,7 +127,7 @@ class Game extends JFrame{
             }
         });
 
-
+        add(startImage);
         add(label_rock);
         add(label_paper);
         add(label_scissor);
@@ -187,14 +196,17 @@ class Game extends JFrame{
         if(player=="Rock"){
             playerChoice.setIcon(image_rock);
             playerChoice.setText("Rock");
+            startImage.setVisible(false);
         }
         else if(player=="Paper"){
             playerChoice.setIcon(image_paper);
             playerChoice.setText("Paper");
+            startImage.setVisible(false);
         }
         else{
             playerChoice.setIcon(image_scissor);
             playerChoice.setText("Scissor");
+            startImage.setVisible(false);
         }
     }
 
